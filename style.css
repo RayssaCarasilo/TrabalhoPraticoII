@@ -1,0 +1,221 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Garantir que o body tenha 100% de altura */
+    position: relative; /* Necessário para posicionamento absoluto dos elementos dentro do body */
+}
+
+h1 {
+    color: #000000;
+    font-size: 40px; 
+}
+
+p {
+    color: #000000;
+    font-size: 18px;
+}
+
+main {
+    position: absolute;
+    left: 80px;
+}
+
+button {
+    padding: 30px 50px;
+    font-size: 18px; 
+    cursor: pointer;
+    background-color: #A1F6DA;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    margin: 10px 0; 
+} 
+
+label {
+    font-family: arial;
+    color: #dfdfdf;
+}
+
+.container {
+    position: absolute;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Garantir que o body tenha 100% de altura */
+    position: relative; /* Necessário para posicionamento absoluto dos elementos dentro do body */
+    padding: 10px 20px;
+}
+
+/* css do nav */
+:root {
+    --nav-background: #A1F6DA;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: var(--nav-border);
+    background: var(--nav-background);
+    border-radius: 5px;
+    font-size: 3rem;
+    padding: .1em;
+    margin: 20px;
+}
+
+nav h1 {
+    color: #000000;
+    font-size: 22px;
+    position: relative;
+    right: 520px;
+}
+
+.simbolo{
+        width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.usuario {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px); /* Fica fora do nav */
+    right: 0;
+    border: 1px solid #A1F6DA;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.menu-container {
+    position: relative; /* <- importante para o posicionamento do dropdown */
+}
+
+.tabela {
+    padding: 0px 50px;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 15px;
+    margin: 1px 0; 
+}
+
+main {
+  width: 50vw; /* metade da largura da tela */
+  margin-left: 0; /* gruda na esquerda */
+}
+
+main h1{
+    color: #E673BD;
+    font-size: 70px;
+}
+
+main p{
+    font-size: 25px;
+}
+
+button{
+    background-color:#A1F6DA;
+    padding: 0px 15px;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+button h1{
+    color:#000000;
+    font-size: 42px;
+}
+
+.circulo {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    position: absolute;
+}
+
+
+/* TRANSIÇÃO */
+    #primeira-pagina {
+      transition: opacity 1s ease;
+      opacity: 1;
+    }
+
+    #primeira-pagina.fade-out {
+      opacity: 0;
+    }
+
+    /* GALERIA inicialmente oculta */
+    #galeria {
+      display: none;
+      padding: 20px;
+    }
+
+    /* Exemplo visual para galeria */
+    #galeria h1 {
+      font-size: 50px;
+      color: #E673BD;
+    }
+
+#animais {
+  position: relative; /* contexto para os filhos com position: absolute */
+  width: 100vw;
+  height: 600px;
+}
+
+.animal-card {
+  position: absolute;
+  width: 180px;
+  height: 220px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.animal-card img {
+  height: 120px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.animal-card h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.animal-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #444;
+}
