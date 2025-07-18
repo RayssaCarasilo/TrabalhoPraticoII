@@ -8,11 +8,11 @@
 </head>
 <body>
     <nav>
-    <img class="logo" src="user.png"/>
+    <img class="logo" src="icones/user.png"/>
     <h1>AdotaAi</h1>
     <div class=" menu-container">
-        <img class="usuario" src="user.png" alt="Usuário" class="user-icon" onclick="toggleMenu()" />
-        <img class="simbolo" src="pin-de-localizacao.png" />
+        <img class="usuario" src="icones/user.png" alt="Usuário" class="user-icon" onclick="toggleMenu()" />
+        <img class="simbolo" src="icones/pin-de-localizacao.png" />
         <div class="dropdown" id="userMenu">
             <div class="tabela">
                 <a href="login.html" target="_self">
@@ -40,36 +40,67 @@ Crie sua conta agora e já comece a encontrar seu aumigo ideal</p>
 
 
 <div id="galeria">
+  <h1>Galeria de Bichinhos Disponivéis</h1>
 
-    <h1>Galeria de Bichinhos Disponivéis</h1>
-
-   <div id="animais">
-
-  <div class="animal-card" style="top: 100px; left: 10vw;">
-    <img src="user.png" alt="Cachorro">
-    <h3>Rex</h3>
-    <p>(11) 99999-0000</p>
+  <div id="animais">
+    <!-- Aqui os cards serão adicionados -->
   </div>
 
-  <div class="animal-card" style="top: 100px; left: 30vw;">
-    <img src="gato1.jpg" alt="Gato">
-    <h3>Mingau</h3>
-    <p>(21) 91234-5678</p>
-  </div>
+  <button id="adicionar-animal">+</button>
 
-  <div class="animal-card" style="top: 100px; left: 50vw;">
-    <img src="coelho.jpg" alt="Coelho">
-    <h3>Fluffy</h3>
-    <p>(31) 98765-4321</p>
-  </div>
+  <div class="adicionar" style="display: none;">
+    <section id="cadastro-bichinho">
+  <div class="form-container">
+    
+    <h1>Um novo lar pro seu bichinho!</h1>
 
-  <div class="animal-card" style="top: 100px; left: 70vw;">
-    <img src="passaro.jpg" alt="Pássaro">
-    <h3>Piupiu</h3>
-    <p>(41) 12345-6789</p>
-  </div>
+    <form id="animal-form">
+      <div class="left-side">
+        <label for="nome">Nome do bichinho</label>
+        <input type="text" id="nome" name="nome" required>
 
+        <div class="row">
+          <div>
+            <label for="porte">Porte</label>
+            <input type="text" id="porte" name="porte" required>
+          </div>
+          <div>
+            <label for="idade">Idade</label>
+            <input type="text" id="idade" name="idade" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="tipo">Tipo</label>
+            <input type="text" id="tipo" name="tipo" required>
+          </div>
+          <div>
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao" name="descricao" rows="2" required></textarea>
+          </div>
+        </div>
+
+        <label for="contato">Telefone para contato</label>
+        <input type="tel" id="contato" name="contato" required>
+      </div>
+
+      <div class="right-side">
+        <label>Adicione uma foto do seu bichinho</label>
+        <div class="upload-area">
+          <span>+</span>
+          <input type="file" id="foto" name="foto" accept="image/*">
+        </div>
+      </div>
+
+      <button class="submit" type="submit">Adicionar</button>
+    </form>
+  </div>
+</section>
+
+  </div>
 </div>
+
 
 </div>
 

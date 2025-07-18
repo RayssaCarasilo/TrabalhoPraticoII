@@ -181,31 +181,30 @@ button h1{
     }
 
 #animais {
-  position: relative; /* contexto para os filhos com position: absolute */
-  width: 100vw;
-  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+.animal-info{
+    padding: 10px 15px;
+    background-color: #ffffff;
+    border-radius: 15px;
 }
 
 .animal-card {
-  position: absolute;
-  width: 180px;
-  height: 220px;
-  background: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
+  width: 200px;
   padding: 10px;
-  box-sizing: border-box;
+  background-color: #A1F6DA;
+  border-radius: 20px;
   text-align: center;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 .animal-card img {
   height: 120px;
   width: 100%;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 15px;
   margin-bottom: 8px;
 }
 
@@ -219,3 +218,150 @@ button h1{
   font-size: 14px;
   color: #444;
 }
+
+
+.adicionar {
+  display: none; /* continua escondido inicialmente */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 800px;
+  overflow-y: auto;
+}
+
+
+#cadastro-bichinho {
+    background-color: white;
+    padding: 40px;
+  }
+
+  .form-container h1 {
+    text-align: center;
+    color: #FF66CC;
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .left-side {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 200px;
+  }
+
+  label {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+  }
+
+  input[type="text"],
+  input[type="tel"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #A1F6DA;
+    border: none;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  .row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .upload-area {
+    width: 200px;
+    height: 200px;
+    background-color: #A1F6DA;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 5rem;
+    color: #FF66CC;
+    cursor: pointer;
+  }
+
+  .upload-area input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  button[type="submit"] {
+    margin-top: 30px;
+    padding: 12px 24px;
+    background-color: #A1F6DA;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  #adicionar-animal{
+    width: 100px;
+    height: 100px;
+    background-color: #A1F6DA;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    color: #FF66CC;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+.btn-fechar {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  background: #FF66CC;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
