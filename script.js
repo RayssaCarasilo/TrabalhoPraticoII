@@ -30,37 +30,52 @@ const botaoComecar = document.getElementById("botao-comecar");
     });
   });
 
-
- document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("animal-form");
-  const container = document.getElementById("animais");
+  const galeria = document.getElementById("animais");
 
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
+    // Pegando valores do formulário
     const nome = document.getElementById("nome").value;
     const tipo = document.getElementById("tipo").value;
+    const porte = document.getElementById("porte").value;
+    const idade = document.getElementById("idade").value;
+    const descricao = document.getElementById("descricao").value;
     const contato = document.getElementById("contato").value;
+    const fotoInput = document.getElementById("foto");
+    const fotoArquivo = fotoInput.files[0];
 
-    // Seleciona imagem com base no tipo
-    let imagem = "";
-    if (tipo === "cachorro") imagem = "icones/user.png";
-    else if (tipo === "gato") imagem = "icones/user.png";
-    else if (tipo === "coelho") imagem = "icones/user.png";
-    else if (tipo === "passaro") imagem = "icones/user.png";
-
+    // Criação do card
     const card = document.createElement("div");
     card.className = "animal-card";
 
+    // Imagem (se houver)
+    let imagemHTML = "";
+    if (fotoArquivo) {
+      const urlImagem = URL.createObjectURL(fotoArquivo);
+      imagemHTML = `<img src="${urlImagem}" alt="${tipo}" class="foto-bichinho">`;
+    }
+
+    // HTML do card
     card.innerHTML = `
-      <img src="${imagem}" alt="${tipo}">
+      ${imagemHTML}
       <div class="animal-info">
         <h3>${nome}</h3>
-        <p>${contato}</p>
+        <p><strong>Tipo:</strong> ${tipo}</p>
+        <p><strong>Porte:</strong> ${porte}</p>
+        <p><strong>Idade:</strong> ${idade}</p>
+        <p><strong>Descrição:</strong> ${descricao}</p>
+        <p><strong>Contato:</strong> ${contato}</p>
       </div>
     `;
 
-    container.appendChild(card);
+    // Adiciona à galeria
+    galeria.appendChild(card);
+
+    // Limpa o formulário
     form.reset();
   });
 });
+

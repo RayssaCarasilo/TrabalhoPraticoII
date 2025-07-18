@@ -46,26 +46,58 @@ Crie sua conta agora e já comece a encontrar seu aumigo ideal</p>
     <!-- Aqui os cards serão adicionados -->
   </div>
 
-  <button id="adicionar-animal">Adicionar Animal</button>
+  <button id="adicionar-animal">+</button>
 
   <div class="adicionar" style="display: none;">
+    <section id="cadastro-bichinho">
+  <div class="form-container">
+    
+    <h1>Um novo lar pro seu bichinho!</h1>
+
     <form id="animal-form">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" required>
+      <div class="left-side">
+        <label for="nome">Nome do bichinho</label>
+        <input type="text" id="nome" name="nome" required>
 
-      <label for="tipo">Tipo:</label>
-      <select id="tipo" name="tipo" required>
-        <option value="cachorro">Cachorro</option>
-        <option value="gato">Gato</option>
-        <option value="coelho">Coelho</option>
-        <option value="passaro">Pássaro</option>
-      </select>
+        <div class="row">
+          <div>
+            <label for="porte">Porte</label>
+            <input type="text" id="porte" name="porte" required>
+          </div>
+          <div>
+            <label for="idade">Idade</label>
+            <input type="text" id="idade" name="idade" required>
+          </div>
+        </div>
 
-      <label for="contato">Contato:</label>
-      <input type="tel" id="contato" name="contato" required>
+        <div class="row">
+          <div>
+            <label for="tipo">Tipo</label>
+            <input type="text" id="tipo" name="tipo" required>
+          </div>
+          <div>
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao" name="descricao" rows="2" required></textarea>
+          </div>
+        </div>
 
-      <button type="submit">Adicionar</button>
+        <label for="contato">Telefone para contato</label>
+        <input type="tel" id="contato" name="contato" required>
+      </div>
+
+      <div class="right-side">
+        <label>Adicione uma foto do seu bichinho</label>
+        <div class="upload-area">
+          <span>+</span>
+          <input type="file" id="foto" name="foto" accept="image/*">
+        </div>
+      </div>
+
+      <button class="submit" type="submit">Adicionar</button>
     </form>
+  </div>
+</section>
+
   </div>
 </div>
 
