@@ -181,9 +181,10 @@ button h1{
     }
 
 #animais {
-  position: relative; /* contexto para os filhos com position: absolute */
-  width: 100vw;
-  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
 }
 .animal-info{
     padding: 10px 15px;
@@ -192,18 +193,11 @@ button h1{
 }
 
 .animal-card {
-  position: absolute;
-  width: 180px;
-  height: 220px;
-  background: #A1F6DA;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  border-radius: 20px;
+  width: 200px;
   padding: 10px;
-  box-sizing: border-box;
+  background-color: #A1F6DA;
+  border-radius: 20px;
   text-align: center;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 .animal-card img {
@@ -224,3 +218,9 @@ button h1{
   font-size: 14px;
   color: #444;
 }
+
+
+.adicionar{
+    display: none;
+}
+

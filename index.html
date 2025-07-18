@@ -40,44 +40,35 @@ Crie sua conta agora e já comece a encontrar seu aumigo ideal</p>
 
 
 <div id="galeria">
+  <h1>Galeria de Bichinhos Disponivéis</h1>
 
-    <h1>Galeria de Bichinhos Disponivéis</h1>
-
-   <div id="animais">
-
-  <div class="animal-card" style="top: 100px; left: 10vw;">
-    <img src="icones/user.png" alt="Cachorro">
-    <div class="animal-info">
-    <h3>Rex</h3>
-    <p>(11) 99999-0000</p>
-    </div>
+  <div id="animais">
+    <!-- Aqui os cards serão adicionados -->
   </div>
 
-  <div class="animal-card" style="top: 100px; left: 30vw;">
-    <img src="gato1.jpg" alt="Gato">
-      <div class="animal-info">
-    <h3>Rex</h3>
-    <p>(11) 99999-0000</p>
-    </div>
-  </div>
+  <button id="adicionar-animal">Adicionar Animal</button>
 
-  <div class="animal-card" style="top: 100px; left: 50vw;">
-    <img src="coelho.jpg" alt="Coelho">
-     <div class="animal-info">
-    <h3>Rex</h3>
-    <p>(11) 99999-0000</p>
-    </div>
-  </div>
+  <div class="adicionar" style="display: none;">
+    <form id="animal-form">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
 
-  <div class="animal-card" style="top: 100px; left: 70vw;">
-    <img src="passaro.jpg" alt="Pássaro">
-     <div class="animal-info">
-    <h3>Rex</h3>
-    <p>(11) 99999-0000</p>
-    </div>
-  </div>
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" name="tipo" required>
+        <option value="cachorro">Cachorro</option>
+        <option value="gato">Gato</option>
+        <option value="coelho">Coelho</option>
+        <option value="passaro">Pássaro</option>
+      </select>
 
+      <label for="contato">Contato:</label>
+      <input type="tel" id="contato" name="contato" required>
+
+      <button type="submit">Adicionar</button>
+    </form>
+  </div>
 </div>
+
 
 </div>
 
