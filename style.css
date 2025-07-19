@@ -37,7 +37,7 @@ button {
 
 label {
     font-family: arial;
-    color: #dfdfdf;
+    color: #616162;
 }
 
 .container {
@@ -192,6 +192,10 @@ button h1{
     border-radius: 15px;
 }
 
+.animal-form{
+  color:#FF66CC
+}
+
 .animal-card {
   width: 200px;
   padding: 10px;
@@ -216,7 +220,7 @@ button h1{
 .animal-card p {
   margin: 0;
   font-size: 14px;
-  color: #444;
+  color: #312f2f;
 }
 
 
@@ -293,6 +297,7 @@ button h1{
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .upload-area {
