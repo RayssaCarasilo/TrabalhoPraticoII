@@ -295,6 +295,36 @@ button h1{
     flex-wrap: wrap;
   }
 
+  select {
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* Mais espaço à direita para a seta */
+  background-color: #A1F6DA;
+  border: none;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: inherit;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: '▼';
+  font-size: 14px;
+  color: #000;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
   .upload-area {
     width: 200px;
     height: 200px;
@@ -347,21 +377,3 @@ button h1{
     bottom: 0;
     right: 0;
   }
-
-.btn-fechar {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 2.5rem;
-  background: #FF66CC;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
