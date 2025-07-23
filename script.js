@@ -73,11 +73,23 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
     `;
 
-    // Adiciona à galeria
-    galeria.appendChild(card);
+      // Adiciona à galeria
+      galeria.appendChild(card);
 
-    // Limpa o formulário
-    form.reset();
+      // Limpa o formulário
+      form.reset();
+
+      // --- Resetar área de upload ---
+      const uploadArea = document.querySelector('.upload-area');
+
+      // Remove a imagem (se tiver)
+      const imgPreview = uploadArea.querySelector('img');
+      if (imgPreview) uploadArea.removeChild(imgPreview);
+
+      // Mostra o símbolo "+"
+      const plusSign = uploadArea.querySelector('span');
+      if (plusSign) plusSign.style.display = 'inline';
+
   });
 });
 
@@ -101,4 +113,46 @@ document.getElementById('contato').addEventListener('input', function (e) {
 
 document.getElementById('idade').addEventListener('input', function (e) {
   e.target.value = e.target.value.replace(/\D/g, '');
+});
+
+
+document.getElementById('foto').addEventListener('change', function (e) {
+  const uploadArea = document.querySelector('.upload-area');
+  const file = e.target.files[0];
+
+  if (file) {
+    const imageUrl = URL.createObjectURL(file);
+
+    // Esconde o símbolo de "+"
+    const plusSign = uploadArea.querySelector('span');
+    if (plusSign) plusSign.style.display = 'none';
+
+    // Remove imagem anterior (se já houver)
+    const existingImg = uploadArea.querySelector('img');
+    if (existingImg) uploadArea.removeChild(existingImg);
+
+    // Adiciona nova imagem
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = 'Pré-visualização';
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
+    img.style.borderRadius = '20px';
+
+    uploadArea.appendChild(img);
+  }
+});
+
+
+document.getElementById('botao-limpar').addEventListener('click', function () {
+  const form = document.getElementById('animal-form');
+  form.reset(); 
+  const uploadArea = document.querySelector('.upload-area');
+  const imgPreview = uploadArea.querySelector('img');
+
+  if (imgPreview) uploadArea.removeChild(imgPreview);
+  const plusSign = uploadArea.querySelector('span');
+  
+  if (plusSign) plusSign.style.display = 'inline';
 });
