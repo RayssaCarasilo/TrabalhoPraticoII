@@ -28,12 +28,9 @@ botaoAdicionar.addEventListener('click', () => {
 });
 
 // Função para enviar dados para o servidor
-formulario.addEventListener('submit', async (e) => {
+formulario.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    const formData = new FormData();
-    
-    // Pegar dados do formulário
+
     const nome = document.getElementById('nome').value;
     const porte = document.getElementById('porte').value;
     const idade = document.getElementById('idade').value;
@@ -41,102 +38,58 @@ formulario.addEventListener('submit', async (e) => {
     const descricao = document.getElementById('descricao').value;
     const contato = document.getElementById('contato').value;
     const foto = document.getElementById('foto').files[0];
-    
-    // Validar se todos os campos estão preenchidos
-    if (!nome || !porte || !idade || !tipo || !descricao || !contato || !foto) {
-        alert('Por favor, preencha todos os campos e selecione uma foto!');
-        return;
-    }
-    
-    // Adicionar dados ao FormData
-    formData.append('name', nome);
-    formData.append('foto', foto);
-    
-    try {
-        // Enviar para o servidor
-        const response = await fetch('/images', {
-            method: 'POST',
-            body: formData
-        });
-        
-        if (response.ok) {
-            const result = await response.json();
-            console.log('Sucesso:', result);
-            
-            // Criar objeto do animal com todos os dados
-            const animal = {
-                id: Date.now(),
-                nome,
-                porte,
-                idade,
-                tipo,
-                descricao,
-                contato,
-                foto: result.image.src
-            };
-            
-            // Adicionar ao array e salvar no localStorage
-            animais.push(animal);
-            localStorage.setItem('animais', JSON.stringify(animais));
-            
-            // Atualizar a galeria
-            adicionarAnimalNaGaleria(animal);
-            
-            // Limpar formulário e fechar
-            formulario.reset();
-            divAdicionar.style.display = 'none';
-            
-            alert('Animal adicionado com sucesso!');
-        } else {
-            throw new Error('Erro ao enviar dados');
-        }
-    } catch (error) {
-        console.error('Erro:', error);
-        alert('Erro ao adicionar animal. Tente novamente.');
-    }
+
+    // Gerar URL temporária para a imagem
+    const fotoURL = URL.createObjectURL(foto);
+
+    const animal = {
+        id: Date.now(),
+        nome,
+        porte,
+        idade,
+        tipo,
+        descricao,
+        contato,
+        foto: fotoURL
+    };
+
+    animais.push(animal);
+    localStorage.setItem('animais', JSON.stringify(animais));
+    adicionarAnimalNaGaleria(animal);
+
+    formulario.reset();
+    divAdicionar.style.display = 'none';
 });
 
+   function carregarAnimais() {
+    animaisContainer.innerHTML = '';
+    const animaisSalvos = JSON.parse(localStorage.getItem('animais')) || [];
+    animaisSalvos.forEach(animal => adicionarAnimalNaGaleria(animal));
+}
 
-    // Pegando valores do formulário
-    const nome = document.getElementById("nome").value;
-    const tipo = document.getElementById("tipo").value;
-    const porte = document.getElementById("porte").value;
-    const idade = document.getElementById("idade").value;
-    const cidade = document.getElementById("cidade").value;
-    const descricao = document.getElementById("descricao").value;
-    const contato = document.getElementById("contato").value;
-    const fotoInput = document.getElementById("foto");
-    const fotoArquivo = fotoInput.files[0];
-
-    // Criação do card
+function adicionarAnimalNaGaleria(animal) {
     const card = document.createElement("div");
     card.className = "animal-card";
 
-    // Imagem (se houver)
     let imagemHTML = "";
-    if (fotoArquivo) {
-      const urlImagem = URL.createObjectURL(fotoArquivo);
-      imagemHTML = `<img src="${urlImagem}" alt="${tipo}" class="foto-bichinho">`;
-
+    if (animal.foto) {
+        imagemHTML = `<img src="${animal.foto}" alt="${animal.tipo}" class="foto-bichinho">`;
     }
-}
 
-    // HTML do card
     card.innerHTML = `
       ${imagemHTML}
       <div class="animal-info">
-        <h3>${nome}</h3>
-        <p><strong>Tipo:</strong> ${tipo}</p>
-        <p><strong>Porte:</strong> ${porte}</p>
-        <p><strong>Idade:</strong> ${idade}</p>
-        <p><strong>Cidade:</strong> ${cidade}</p>
-        <p><strong>Contato:</strong> ${contato}</p>
-        <p><strong>Descrição:</strong> ${descricao}</p>
+        <h3>${animal.nome}</h3>
+        <p><strong>Tipo:</strong> ${animal.tipo}</p>
+        <p><strong>Porte:</strong> ${animal.porte}</p>
+        <p><strong>Idade:</strong> ${animal.idade}</p>
+        <p><strong>Cidade:</strong> ${animal.cidade || ''}</p>
+        <p><strong>Contato:</strong> ${animal.contato}</p>
+        <p><strong>Descrição:</strong> ${animal.descricao}</p>
       </div>
-
     `;
-    
-    animaisContainer.appendChild(cardAnimal);
+
+    animaisContainer.appendChild(card);
 }
 
 // Função para remover animal
