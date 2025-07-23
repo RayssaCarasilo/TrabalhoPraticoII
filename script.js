@@ -1,96 +1,157 @@
+// Elementos do DOM
+const botaoComecar = document.getElementById('botao-comecar');
+const primeiraPageina = document.getElementById('primeira-pagina');
+const galeria = document.getElementById('galeria');
+const botaoAdicionar = document.getElementById('adicionar-animal');
+const divAdicionar = document.querySelector('.adicionar');
+const formulario = document.getElementById('animal-form');
+const animaisContainer = document.getElementById('animais');
+
+// Array para armazenar os animais
+let animais = [];
+
+// Função para alternar menu do usuário
 function toggleMenu() {
-  const menu = document.getElementById("userMenu");
-  menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    const menu = document.getElementById('userMenu');
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
 }
 
-const botaoComecar = document.getElementById("botao-comecar");
-    const primeiraPagina = document.getElementById("primeira-pagina");
-    const galeria = document.getElementById("galeria");
+// Event listeners
+botaoComecar.addEventListener('click', () => {
+    primeiraPageina.style.display = 'none';
+    galeria.style.display = 'block';
+    carregarAnimais();
+});
 
-    botaoComecar.addEventListener("click", () => {
-      
-      primeiraPagina.classList.add("fade-out");
+botaoAdicionar.addEventListener('click', () => {
+    divAdicionar.style.display = 'block';
+});
 
-      setTimeout(() => {
-        primeiraPagina.style.display = "none";
-        galeria.style.display = "block";
-      }, 1000);
-    });
-
- document.addEventListener("DOMContentLoaded", function() {
-    const botaoAdicionar = document.getElementById("adicionar-animal");
-    const form = document.querySelector(".adicionar");
-
-    botaoAdicionar.addEventListener("click", function() {
-      if (form.style.display === "none" || form.style.display === "") {
-        form.style.display = "block";
-      } else {
-        form.style.display = "none";
-      }
-    });
-  });
-
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("animal-form");
-  const galeria = document.getElementById("animais");
-
-  form.addEventListener("submit", function (e) {
+// Função para enviar dados para o servidor
+formulario.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
+    const formData = new FormData();
+    
+    // Pegar dados do formulário
+    const nome = document.getElementById('nome').value;
+    const porte = document.getElementById('porte').value;
+    const idade = document.getElementById('idade').value;
+    const tipo = document.getElementById('tipo').value;
+    const descricao = document.getElementById('descricao').value;
+    const contato = document.getElementById('contato').value;
+    const foto = document.getElementById('foto').files[0];
+    
+    // Validar se todos os campos estão preenchidos
+    if (!nome || !porte || !idade || !tipo || !descricao || !contato || !foto) {
+        alert('Por favor, preencha todos os campos e selecione uma foto!');
+        return;
+    }
+    
+    // Adicionar dados ao FormData
+    formData.append('name', nome);
+    formData.append('foto', foto);
+    
+    try {
+        // Enviar para o servidor
+        const response = await fetch('/images', {
+            method: 'POST',
+            body: formData
+        });
+        
+        if (response.ok) {
+            const result = await response.json();
+            console.log('Sucesso:', result);
+            
+            // Criar objeto do animal com todos os dados
+            const animal = {
+                id: Date.now(),
+                nome,
+                porte,
+                idade,
+                tipo,
+                descricao,
+                contato,
+                foto: result.image.src
+            };
+            
+            // Adicionar ao array e salvar no localStorage
+            animais.push(animal);
+            localStorage.setItem('animais', JSON.stringify(animais));
+            
+            // Atualizar a galeria
+            adicionarAnimalNaGaleria(animal);
+            
+            // Limpar formulário e fechar
+            formulario.reset();
+            divAdicionar.style.display = 'none';
+            
+            alert('Animal adicionado com sucesso!');
+        } else {
+            throw new Error('Erro ao enviar dados');
+        }
+    } catch (error) {
+        console.error('Erro:', error);
+        alert('Erro ao adicionar animal. Tente novamente.');
+    }
+});
 
-    // Pegando valores do formulário
-    const nome = document.getElementById("nome").value;
-    const tipo = document.getElementById("tipo").value;
-    const porte = document.getElementById("porte").value;
-    const idade = document.getElementById("idade").value;
-    const cidade = document.getElementById("cidade").value;
-    const descricao = document.getElementById("descricao").value;
-    const contato = document.getElementById("contato").value;
-    const fotoInput = document.getElementById("foto");
-    const fotoArquivo = fotoInput.files[0];
-
-    // Criação do card
+// Função para adicionar animal na galeria
+function adicionarAnimalNaGaleria(animal) {
     const card = document.createElement("div");
     card.className = "animal-card";
 
-    // Imagem (se houver)
     let imagemHTML = "";
-    if (fotoArquivo) {
-      const urlImagem = URL.createObjectURL(fotoArquivo);
-      imagemHTML = `<img src="${urlImagem}" alt="${tipo}" class="foto-bichinho">`;
+    if (animal.foto) {
+        imagemHTML = `<img src="${animal.foto}" alt="${animal.tipo}" class="foto-bichinho">`;
     }
 
-    // HTML do card
     card.innerHTML = `
       ${imagemHTML}
       <div class="animal-info">
-        <h3>${nome}</h3>
-        <p><strong>Tipo:</strong> ${tipo}</p>
-        <p><strong>Porte:</strong> ${porte}</p>
-        <p><strong>Idade:</strong> ${idade}</p>
-        <p><strong>Cidade:</strong> ${cidade}</p>
-        <p><strong>Contato:</strong> ${contato}</p>
-        <p><strong>Descrição:</strong> ${descricao}</p>
+        <h3>${animal.nome}</h3>
+        <p><strong>Tipo:</strong> ${animal.tipo}</p>
+        <p><strong>Porte:</strong> ${animal.porte}</p>
+        <p><strong>Idade:</strong> ${animal.idade}</p>
+        <p><strong>Descrição:</strong> ${animal.descricao}</p>
+        <p><strong>Contato:</strong> ${animal.contato}</p>
       </div>
+      <button onclick="removerAnimal(${animal.id})">Remover</button>
     `;
 
-      // Adiciona à galeria
-      galeria.appendChild(card);
+    animaisContainer.appendChild(card);
+}
 
-      // Limpa o formulário
-      form.reset();
+// Função para carregar animais do localStorage
+function carregarAnimais() {
+    animaisContainer.innerHTML = '';
+    const animaisSalvos = localStorage.getItem('animais');
+    if (animaisSalvos) {
+        animais = JSON.parse(animaisSalvos);
+        animais.forEach(animal => adicionarAnimalNaGaleria(animal));
+    }
+}
 
-      // --- Resetar área de upload ---
-      const uploadArea = document.querySelector('.upload-area');
+// Função para remover animal
+function removerAnimal(id) {
+    if (confirm('Tem certeza que deseja remover este animal?')) {
+        animais = animais.filter(animal => animal.id !== id);
+        localStorage.setItem('animais', JSON.stringify(animais));
+        
+        // Recarregar galeria
+        animaisContainer.innerHTML = '';
+        animais.forEach(animal => adicionarAnimalNaGaleria(animal));
+    }
+}
 
-      // Remove a imagem (se tiver)
-      const imgPreview = uploadArea.querySelector('img');
-      if (imgPreview) uploadArea.removeChild(imgPreview);
-
-      // Mostra o símbolo "+"
-      const plusSign = uploadArea.querySelector('span');
-      if (plusSign) plusSign.style.display = 'inline';
-
-  });
+// Fechar menu ao clicar fora
+document.addEventListener('click', (e) => {
+    const menu = document.getElementById('userMenu');
+    const usuario = document.querySelector('.usuario');
+    
+    if (!usuario.contains(e.target)) {
+        menu.style.display = 'none';
+    }
 });
 
 
@@ -153,6 +214,6 @@ document.getElementById('botao-limpar').addEventListener('click', function () {
 
   if (imgPreview) uploadArea.removeChild(imgPreview);
   const plusSign = uploadArea.querySelector('span');
-  
+
   if (plusSign) plusSign.style.display = 'inline';
 });
