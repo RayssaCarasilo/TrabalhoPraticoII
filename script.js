@@ -102,9 +102,14 @@ function adicionarAnimalNaGaleria(animal) {
     card.className = "animal-card";
 
     let imagemHTML = "";
-    if (animal.foto) {
-        imagemHTML = `<img src="${animal.foto}" alt="${animal.tipo}" class="foto-bichinho">`;
+
+    if (fotoArquivo) {
+      const urlImagem = URL.createObjectURL(fotoArquivo);
+      imagemHTML = `<img src="${urlImagem}" alt="${tipo}" class="foto-bichinho">`;
+
+
     }
+}
 
     card.innerHTML = `
       ${imagemHTML}
@@ -116,11 +121,12 @@ function adicionarAnimalNaGaleria(animal) {
         <p><strong>Descrição:</strong> ${animal.descricao}</p>
         <p><strong>Contato:</strong> ${animal.contato}</p>
       </div>
-      <button onclick="removerAnimal(${animal.id})">Remover</button>
-    `;
 
-    animaisContainer.appendChild(card);
-}
+    `;
+    
+    animaisContainer.appendChild(cardAnimal);
+
+
 
 // Função para carregar animais do localStorage
 function carregarAnimais() {
