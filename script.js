@@ -24,7 +24,7 @@ botaoComecar.addEventListener('click', () => {
 });
 
 botaoAdicionar.addEventListener('click', () => {
-    divAdicionar.style.display = 'block';
+    divAdicionar.style.display = divAdicionar.style.display === 'block' ? 'none' : 'block';
 });
 
 // Função para enviar dados para o servidor
@@ -36,6 +36,7 @@ formulario.addEventListener('submit', (e) => {
     const idade = document.getElementById('idade').value;
     const tipo = document.getElementById('tipo').value;
     const descricao = document.getElementById('descricao').value;
+    const cidade = document.getElementById('cidade').value;
     const contato = document.getElementById('contato').value;
     const foto = document.getElementById('foto').files[0];
 
@@ -48,6 +49,7 @@ formulario.addEventListener('submit', (e) => {
         porte,
         idade,
         tipo,
+        cidade,
         descricao,
         contato,
         foto: fotoURL
@@ -56,9 +58,21 @@ formulario.addEventListener('submit', (e) => {
     animais.push(animal);
     localStorage.setItem('animais', JSON.stringify(animais));
     adicionarAnimalNaGaleria(animal);
-
     formulario.reset();
+    
     divAdicionar.style.display = 'none';
+
+    // --- Resetar área de upload ---
+    const uploadArea = document.querySelector('.upload-area');
+
+    // Remove a imagem (se tiver)
+    const imgPreview = uploadArea.querySelector('img');
+    if (imgPreview) uploadArea.removeChild(imgPreview);
+
+    // Mostra o símbolo "+"
+    const plusSign = uploadArea.querySelector('span');
+    if (plusSign) plusSign.style.display = 'inline';
+
 });
 
    function carregarAnimais() {
@@ -83,7 +97,7 @@ function adicionarAnimalNaGaleria(animal) {
         <p><strong>Tipo:</strong> ${animal.tipo}</p>
         <p><strong>Porte:</strong> ${animal.porte}</p>
         <p><strong>Idade:</strong> ${animal.idade}</p>
-        <p><strong>Cidade:</strong> ${animal.cidade || ''}</p>
+        <p><strong>Cidade:</strong> ${animal.cidade}</p>
         <p><strong>Contato:</strong> ${animal.contato}</p>
         <p><strong>Descrição:</strong> ${animal.descricao}</p>
       </div>
@@ -134,4 +148,47 @@ document.getElementById('contato').addEventListener('input', function (e) {
 
 document.getElementById('idade').addEventListener('input', function (e) {
   e.target.value = e.target.value.replace(/\D/g, '');
+});
+
+
+document.getElementById('foto').addEventListener('change', function (e) {
+  const uploadArea = document.querySelector('.upload-area');
+  const file = e.target.files[0];
+
+  if (file) {
+    const imageUrl = URL.createObjectURL(file);
+
+    // Esconde o símbolo de "+"
+    const plusSign = uploadArea.querySelector('span');
+    if (plusSign) plusSign.style.display = 'none';
+
+    // Remove imagem anterior (se já houver)
+    const existingImg = uploadArea.querySelector('img');
+    if (existingImg) uploadArea.removeChild(existingImg);
+
+    // Adiciona nova imagem
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = 'Pré-visualização';
+    img.style.width = '100%';
+    img.style.height = '100%';
+    img.style.objectFit = 'cover';
+    img.style.borderRadius = '20px';
+
+    uploadArea.appendChild(img);
+  }
+});
+
+
+document.getElementById('botao-limpar').addEventListener('click', function () {
+  const form = document.getElementById('animal-form');
+  form.reset(); 
+
+  const uploadArea = document.querySelector('.upload-area');
+
+  const imgPreview = uploadArea.querySelector('img');
+  if (imgPreview) uploadArea.removeChild(imgPreview);
+
+  const plusSign = uploadArea.querySelector('span');
+  if (plusSign) plusSign.style.display = 'inline';
 });

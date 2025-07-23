@@ -383,22 +383,6 @@ button h1{
     right: 0;
   }
 
-.btn-fechar {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 2.5rem;
-  background: #FF66CC;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  cursor: pointer;
-  z-index: 1000;
-}
 
 /* Estilos para os cards dos animais */
 .card-animal {
@@ -460,4 +444,15 @@ button h1{
   margin: 20px 0;
 }
 
+#botao-limpar {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #A1F6DA;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
