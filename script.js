@@ -24,7 +24,7 @@ botaoComecar.addEventListener('click', () => {
 });
 
 botaoAdicionar.addEventListener('click', () => {
-    divAdicionar.style.display = 'block';
+     divAdicionar.style.display = divAdicionar.style.display === 'block' ? 'none' : 'block'; 
 });
 
 // Função para enviar dados para o servidor
