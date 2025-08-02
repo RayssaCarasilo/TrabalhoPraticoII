@@ -425,6 +425,74 @@ button h1{
     right: 0;
   }
 
+    #filtrar{
+    width: 100px;
+    height: 100px;
+    background-color: #A1F6DA;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    color: #FF66CC;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 25%;
+    right: 0;
+  }
+
+  #filtrar img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+
+
+.filtro {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  background-color: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  width: 800px;
+  overflow-y: auto;
+   width: 300px;
+}
+
+#filtro-animais h1 {
+  text-align: center;
+  color: #FF66CC;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+#filtro-animais form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+#limpar-filtros {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #A1F6DA;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
 /* Estilos para os cards dos animais */
 .card-animal {

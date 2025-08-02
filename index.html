@@ -55,12 +55,68 @@ Crie sua conta agora e já comece a encontrar seu aumigo ideal</p>
   <h1>Galeria de Bichinhos Disponíveis</h1>
 
 
-
-
-
   <div id="animais">
     <!-- Aqui os cards serão adicionados -->
   </div>
+
+    <button id="filtrar">
+    <img src="icones/filtro.png" alt="Filtro de animais">
+  </button>
+  <div class="filtro" style="display: none;">
+  <section id="filtro-animais">
+    <div class="form-container">
+      <h1>Filtrar Bichinhos</h1>
+      <form id="form-filtro">
+        <div class="left-side">
+          <div class="row">
+            <div class="select-wrapper">
+              <label for="tipo-filtro">Tipo</label>
+              <select id="tipo-filtro" name="tipo">
+                <option value="">Todos</option>
+                <option value="cachorro">Cachorro</option>
+                <option value="gato">Gato</option>
+                <option value="coelho">Coelho</option>
+              </select>
+            </div>
+
+            <div class="select-wrapper">
+              <label for="porte-filtro">Porte</label>
+              <select id="porte-filtro" name="porte">
+                <option value="">Todos</option>
+                <option value="pequeno">Pequeno</option>
+                <option value="medio">Médio</option>
+                <option value="grande">Grande</option>
+              </select>
+            </div>
+
+            <div class="select-wrapper">
+              <label for="cidade-filtro">Cidade</label>
+              <select id="cidade-filtro" name="cidade">
+                <option value="">Todas</option>
+                <option value="camboriu">Camboriú</option>
+                <option value="balnearioCamboriu">Balneário Camboriú</option>
+                <option value="itajai">Itajaí</option>
+                <option value="balnearioPicarras">Balneário Piçarras</option>
+                <option value="barraVelha">Barra Velha</option>
+                <option value="bombinhas">Bombinhas</option>
+                <option value="ilhota">Ilhota</option>
+                <option value="itapema">Itapema</option>
+                <option value="navegantes">Navegantes</option>
+                <option value="penha">Penha</option>
+                <option value="portoBelo">Porto Belo</option>
+                <option value="saoJoaoItaperiu">São João do Itaperiú</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit">Aplicar Filtros</button>
+          <button type="button" id="limpar-filtros">Limpar Filtros</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
+
 
   <button id="adicionar-animal">+</button>
 

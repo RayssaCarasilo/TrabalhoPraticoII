@@ -211,3 +211,42 @@ document.getElementById('foto').addEventListener('change', function(e) {
         reader.readAsDataURL(file);
     }
 });
+
+
+//Filtragem
+const botaoFiltrar = document.getElementById('filtrar');
+const divFiltro = document.querySelector('.filtro');
+const formFiltro = document.getElementById('form-filtro');
+const limparFiltros = document.getElementById('limpar-filtros');
+
+botaoFiltrar.addEventListener('click', () => {
+    divFiltro.style.display = divFiltro.style.display === 'block' ? 'none' : 'block'; 
+});
+
+formFiltro.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const tipo = document.getElementById('tipo-filtro').value;
+    const porte = document.getElementById('porte-filtro').value;
+    const cidade = document.getElementById('cidade-filtro').value;
+
+    // Limpa galeria atual
+    animaisContainer.innerHTML = '';
+
+    // Filtra e renderiza
+    const animaisFiltrados = animais.filter(animal => {
+        return (!tipo || animal.tipo === tipo) &&
+               (!porte || animal.porte === porte) &&
+               (!cidade || animal.cidade === cidade);
+    });
+
+    animaisFiltrados.forEach(animal => adicionarAnimalNaGaleria(animal));
+    divFiltro.style.display = 'none';
+});
+
+limparFiltros.addEventListener('click', () => {
+    formFiltro.reset();
+    animaisContainer.innerHTML = '';
+    animais.forEach(animal => adicionarAnimalNaGaleria(animal));
+    divFiltro.style.display = 'none';
+});
