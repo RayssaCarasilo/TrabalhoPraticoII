@@ -150,13 +150,55 @@ button h1{
     font-size: 42px;
 }
 
-.circulo {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
+.patinhas{
+    width: 100px;
+    height: 100px;
     position: absolute;
+    left : 40%;
+    top: 85%;
+    transform: rotate(40deg);
+    z-index: 1;
+}
+.patinhas img{
+    width: 230px;
+    height: 230px;
+    object-fit: contain;
 }
 
+#botao-comecar{
+  position:absolute;
+  top: 130%;
+  left: 40%;
+}
+.circulo {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* garante que a imagem não ultrapasse o círculo */
+}
+
+
+.circulo img {
+  width: 100%; /* ou 100% para ocupar todo o círculo */
+  height: 80%;
+  object-fit: cover; /* mantém a proporção da imagem */
+  border-radius: 50%; /* deixa a imagem arredondada */
+}
+
+
+.circulo .cabeca {
+  position: relative;
+  top: -20px;   /* sobe a imagem */
+  left: 20px;   /* move para a direita */
+  width: 100%;   /* mantém proporcional dentro do círculo */
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
 /* TRANSIÇÃO */
     #primeira-pagina {
